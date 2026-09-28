@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from ".Header.module.css";
+import styles from "./Header.module.css";
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
