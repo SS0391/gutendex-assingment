@@ -5,7 +5,7 @@ export default function BookCard({ book }) {
   // get a image for the book that is rendered
   const coverImg = book.formats?.["image/jpeg"] || "https://placeholder.com";
 
-  const authorName = book.author && book.author.length > 0 ? book.author[0].name : "Unknown author";
+  const authorName = book.authors && book.authors.length > 0 ? book.authors[0].name : "Unknown author";
 
   return (
     <div className={styles.card}>

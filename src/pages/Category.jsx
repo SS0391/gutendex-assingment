@@ -7,17 +7,20 @@ import BookCard from "../components/BookCard/BookCard.jsx";
 export default function Category() {
   const { categoryName } = useParams();
 
-  // a way to keep control over the API url for a specific category
-  const [apiUrl, setApiUrl] = useState(`https://gutendex.com/books?topic=${categoryName}`);
+  const [pageUrl, setPageUrl] = useState(null);
 
   useEffect(() => {
-    setApiUrl(`https://gutendex.com/books?topic=${categoryName}`);
+    setPageUrl(null);
   }, [categoryName]);
 
+  const currentUrl = pageUrl || `https://gutendex.com/books/?topic=${encodeURIComponent(categoryName)}`;
+
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["categoryBooks", apiUrl],
-    queryFn: () => fetchBooks(apiUrl),
-    placeholderData: (previousData) => previousData,
+    queryKey: ["categoryBooks", categoryName, currentUrl],
+    queryFn: async () => {
+      const res = await fetchBooks(currentUrl);
+      return res;
+    },
   });
 
   if (isLoading) return <div>Books loading within this category: {categoryName}...</div>;
@@ -32,10 +35,10 @@ export default function Category() {
         ))}
       </div>
       <div>
-        <button onClick={() => setApiUrl(data.previous)} disabled={!data?.previous}>
+        <button onClick={() => setPageUrl(data.previous)} disabled={!data?.previous}>
           Last Page
         </button>
-        <button onClick={() => setApiUrl(data.next)} disabled={!data?.next}>
+        <button onClick={() => setPageUrl(data.next)} disabled={!data?.next}>
           Next Page
         </button>
       </div>

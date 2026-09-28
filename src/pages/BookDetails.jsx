@@ -16,7 +16,7 @@ export default function BookDetails() {
   } = useQuery({
     queryKey: ["book", id],
     queryFn: async () => {
-      const response = await axios.get(`https://gutendex.com/books?ids=${id}`);
+      const response = await axios.get(`https://gutendex.com/books/?ids=${id}`);
       return response.data.results;
     },
   });

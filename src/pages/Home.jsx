@@ -8,26 +8,18 @@ export default function Home() {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
 
-  const [apiUrl, setApiUrl] = useState("https://gutendex.com");
-
-  // changes to the url? resets it to a new search url
-  useEffect(() => {
-    if (searchQuery) {
-      setApiUrl(`https://gutendex.com?search=${encodeURIComponent(searchQuery)}`);
-    } else {
-      setApiUrl("https://gutendex.com");
-    }
-  }, [searchQuery]);
+  const [apiUrl, setApiUrl] = useState("https://gutendex.com/books/");
+  // currentUrl shows the books in list
+  const currentUrl = searchQuery ? `https://gutendex.com/books/?search=${encodeURIComponent(searchQuery)}` : apiUrl;
 
   // Using Tanstack to get Loading, error call if needed
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["books", apiUrl],
-    queryFn: () => fetchBooks(apiUrl),
-    placeholderData: (previousData) => previousData,
+    queryKey: ["books", searchQuery, currentUrl],
+    queryFn: () => fetchBooks(currentUrl),
   });
 
   if (isLoading) return <div>Loading books from the Gutendex API..</div>;
-  if (isError) return <div>Error occurd: {error.message}</div>;
+  if (isError) return <div>Error occurred: {error.message}</div>;
 
   return (
     <div>
