@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    basename: "/gutendex-assingment",
+    basename: import.meta.env.BASE_URL,
   },
 ]);
 
