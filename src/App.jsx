@@ -19,6 +19,9 @@ const router = createBrowserRouter([
       { path: "/favorites", element: <Favorites /> },
     ],
   },
+  {
+    basename: "/gutendex-assingment",
+  },
 ]);
 
 export default function App() {
