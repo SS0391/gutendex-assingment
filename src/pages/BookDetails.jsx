@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./BookDetails.module.css";
+import { fetchBookDetails } from "../services/api";
 
 export default function BookDetails() {
   // fetch an ID for a book from the URL
@@ -16,13 +17,10 @@ export default function BookDetails() {
     error,
   } = useQuery({
     queryKey: ["book", id],
-    queryFn: async () => {
-      const response = await axios.get(`https://gutendex.com/books/?ids=${id}`);
-      return response.data.results;
-    },
+    queryFn: async () => fetchBookDetails(id),
   });
 
-  const book = books && books.length > 0 ? books[0] : null;
+  const book = books || null;
 
   useEffect(() => {
     const currentFav = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -63,6 +61,7 @@ export default function BookDetails() {
         {/*Book details */}
         <h1 className={styles.title}>{book.title}</h1>
         <p className={styles.metaTxt}>Author: {authorName}</p>
+        <p className={styles.metaTxt}>Downloads: {book.download_count?.toLocaleString()}</p>
         <p className={styles.metaTxt}>Language: {book.languages?.join(", ")}</p>
         <p className={styles.metaTxt}>Category / Subject: {book.subjects?.slice(0, 3).join(", ")}</p>
       </div>
