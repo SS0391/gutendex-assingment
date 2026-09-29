@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBooks } from "../services/api.js";
 import BookCard from "../components/BookCard/BookCard.jsx";
+import styles from "./Home.module.css";
 
 export default function Home() {
   const [searchParams] = useSearchParams();
@@ -23,14 +24,14 @@ export default function Home() {
 
   return (
     <div>
-      <h2>{searchQuery ? `Results "${searchQuery}"` : "Popular books"}</h2>
+      <h2 className={styles.pageTitle}>{searchQuery ? `Results "${searchQuery}"` : "Popular books"}</h2>
 
-      <div>
+      <div className={styles.bookGrid}>
         {data?.results?.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
       </div>
-      <div>
+      <div className={styles.pagContainer}>
         <button onClick={() => setApiUrl(data.previous)} disabled={!data?.previous}>
           Last page
         </button>

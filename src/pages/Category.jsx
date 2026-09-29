@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBooks } from "../services/api.js";
 import BookCard from "../components/BookCard/BookCard.jsx";
+import styles from "./Home.module.css";
 
 export default function Category() {
   const { categoryName } = useParams();
@@ -28,13 +29,13 @@ export default function Category() {
 
   return (
     <div>
-      <h2>Category: {categoryName}</h2>
-      <div>
+      <h2 className={styles.pageTitle}>Category: {categoryName}</h2>
+      <div className={styles.bookGrid}>
         {data?.results?.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
       </div>
-      <div>
+      <div className={styles.pagContainer}>
         <button onClick={() => setPageUrl(data.previous)} disabled={!data?.previous}>
           Last Page
         </button>

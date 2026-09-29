@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import styles from "./BookDetails.module.css";
 
 export default function BookDetails() {
   // fetch an ID for a book from the URL
@@ -56,15 +57,17 @@ export default function BookDetails() {
   const digitalLinkToBook = book.formats?.["text/html"] || book.formats?.["text/plain; charset=us-ascii"];
 
   return (
-    <div>
-      <img src={coverImg} alt={book.title} />
-      {/*Book details */}
-      <h1>{book.title}</h1>
-      <p>Author: {authorName}</p>
-      <p>Language: {book.languages?.join(", ")}</p>
-      <p>Category / Subject: {book.subjects?.slice(0, 3).join(", ")}</p>
+    <div className={styles.detailsContainer}>
+      <img src={coverImg} alt={book.title} className={styles.coverImg} />
+      <div className={styles.infoSection}>
+        {/*Book details */}
+        <h1 className={styles.title}>{book.title}</h1>
+        <p className={styles.metaTxt}>Author: {authorName}</p>
+        <p className={styles.metaTxt}>Language: {book.languages?.join(", ")}</p>
+        <p className={styles.metaTxt}>Category / Subject: {book.subjects?.slice(0, 3).join(", ")}</p>
+      </div>
 
-      <div>
+      <div className={styles.btnGroup}>
         {digitalLinkToBook && (
           <a href={digitalLinkToBook} target="_blank" rel="noreferrer">
             Read Online

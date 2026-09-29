@@ -1,0 +1,19 @@
+.pageTitle {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+.bookGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.pagContainer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
