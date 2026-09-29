@@ -1,7 +1,10 @@
 .pageTitle {
   font-size: 1.8rem;
   margin-bottom: 20px;
-  color: #343a40;
+  color: var(--text-main);
+  text-align: left;
+  border-bottom: 2px solid var(--border-card);
+  padding-bottom: 8px;
 }
 
 .bookGrid {
@@ -16,4 +19,26 @@
   justify-content: center;
   gap: 15px;
   margin-top: 20px;
+}
+
+.pagContainer button {
+  background-color: var(--bg-card);
+  color: var(--action-primary);
+  border: 2px solid var(--action-primary);
+  padding: 8px 16px;
+  border-radius: var(--radius-main);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.pagContainer button:hover:not(:disabled) {
+  background-color: var(--action-primary);
+  color: var(--action-text);
+}
+
+.pagContainer button:disabled {
+  background-color: var(--bg-main);
+  color: var(--action-disabled);
+  border-color: var(--action-disabled);
+  cursor: not-allowed;
 }
