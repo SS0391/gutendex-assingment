@@ -4,6 +4,10 @@ A modern, responsive, and user-friendly web application built with **React** and
 
 The visual style of the application features a warm, cozy color palette inspired by **The Lord of the Rings** (classic library and parchment aesthetics).
 
+## Live Demo
+
+**[Live Demo](https://ss0391.github.io/gutendex-assingment/)**
+
 ## Features
 
 - **Search Functionality:** Real-time search for book titles integrated directly with URL query parameters.
