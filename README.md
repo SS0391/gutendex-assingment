@@ -15,7 +15,6 @@ The visual style of the application features a warm, cozy color palette inspired
 
 ## Tech Stack & Architecture
 
-- **Frontend Framework:** React 18+ (initialized with Vite)
 - **Routing:** React Router v6 (`createBrowserRouter`, `RouterProvider`, and dynamic routing parameters)
 - **Data Fetching & Caching:** TanStack Query v5 (React Query) for state synchronization, error/loading handling, and automatic response caching.
 - **HTTP Client:** Axios (configured with a safe client base URL and custom handlers to bypass pagination CORS issues).
