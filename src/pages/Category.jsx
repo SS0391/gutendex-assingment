@@ -14,8 +14,10 @@ export default function Category() {
     setPageUrl(null);
   }, [categoryName]);
 
-  // const currentUrl = pageUrl || `https://gutendex.com/books/?topic=${encodeURIComponent(categoryName)}`;
   const queryParam = pageUrl ? pageUrl : { topic: categoryName };
+
+  // Data getting fetched using Tanstack Query, It automatically tracks the queryKey --> triggers a refetch on changes and cashes results for optimal performance
+  // Is similiar on Home.jsx
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["categoryBooks", categoryName, queryParam],
     queryFn: async () => {

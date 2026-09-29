@@ -13,7 +13,8 @@ export default function Home() {
   // currentUrl shows the books in list
   const currentUrl = searchQuery ? `https://gutendex.com/books/?search=${encodeURIComponent(searchQuery)}` : apiUrl;
 
-  // Using Tanstack to get Loading, error call if needed
+  // Data getting fetched using Tanstack Query, It automatically tracks the queryKey --> triggers a refetch on changes and cashes results for optimal performance
+  // Is similiar on Category.jsx
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["books", searchQuery, currentUrl],
     queryFn: () => fetchBooks(currentUrl),

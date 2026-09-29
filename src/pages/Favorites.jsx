@@ -5,7 +5,7 @@ export default function Favorites() {
   const [favoriteBooks, setFavoriteBooks] = useState([]);
 
   // fetch the list from the localstorage when page renders
-
+  // The empty dependenct array[] ensures this effect only runs once on load --> prevents an infinite loop of re-renders
   useEffect(() => {
     const favs = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavoriteBooks(favs);
