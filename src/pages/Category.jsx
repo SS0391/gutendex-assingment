@@ -13,12 +13,12 @@ export default function Category() {
     setPageUrl(null);
   }, [categoryName]);
 
-  const currentUrl = pageUrl || `https://gutendex.com/books/?topic=${encodeURIComponent(categoryName)}`;
-
+  // const currentUrl = pageUrl || `https://gutendex.com/books/?topic=${encodeURIComponent(categoryName)}`;
+  const queryParam = pageUrl ? pageUrl : { topic: categoryName };
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["categoryBooks", categoryName, currentUrl],
+    queryKey: ["categoryBooks", categoryName, queryParam],
     queryFn: async () => {
-      const res = await fetchBooks(currentUrl);
+      const res = await fetchBooks(queryParam);
       return res;
     },
   });

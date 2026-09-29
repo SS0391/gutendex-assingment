@@ -9,7 +9,7 @@ export default function Favorites() {
   useEffect(() => {
     const favs = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavoriteBooks(favs);
-  });
+  }, []);
 
   return (
     <div>
